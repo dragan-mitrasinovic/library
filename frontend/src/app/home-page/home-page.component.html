@@ -1,0 +1,13 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ dailyBook?.title }}</mat-card-title>
+    <mat-card-subtitle>Authors: {{ dailyBook?.authors }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{ dailyBook?.coverPicture }}" />
+  <h1>Rating: {{ dailyBook?.rating }} / 10</h1>
+  <mat-card-actions>
+    <button mat-button routerLink="/book-page/{{ dailyBook?._id }}">
+      Details
+    </button>
+  </mat-card-actions>
+</mat-card>

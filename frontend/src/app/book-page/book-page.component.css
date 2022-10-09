@@ -1,0 +1,47 @@
+.image-preview img {
+  max-height: 480px;
+  max-width: 300px;
+}
+
+mat-form-field {
+  margin: 4px;
+}
+
+.main-card {
+  max-width: 800px;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.example-card {
+  width: 400px;
+  margin: 1rem;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.comment-card {
+  margin-top: 1rem;
+  display: flex;
+}
+
+.comment-text {
+  margin: 5px 0;
+  padding: 3px;
+  margin-left: 2rem;
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+}
+
+.mycomment-card {
+  margin-top: 1rem;
+}
+
+.mycomment-text {
+  margin: 5px 0;
+  padding: 3px;
+  width: 100%;
+}

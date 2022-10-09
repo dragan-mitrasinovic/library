@@ -1,0 +1,19 @@
+<mat-card class="wrapper">
+  <div class="search-bar">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search</mat-label>
+      <input matInput [(ngModel)]="search" (ngModelChange)="onSearch()" />
+    </mat-form-field>
+  </div>
+  <div class="books-container">
+    <mat-card *ngFor="let book of filteredBooks" class="book-card">
+      <a routerLink="/book-page/{{ book._id }}">
+        <img mat-card-image src="{{ book.coverPicture }}" />
+      </a>
+      <mat-card-header>
+        {{ book.title }}<br />
+        {{ book.authors }}
+      </mat-card-header>
+    </mat-card>
+  </div>
+</mat-card>

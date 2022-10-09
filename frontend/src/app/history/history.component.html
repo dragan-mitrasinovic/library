@@ -1,0 +1,41 @@
+<table
+  mat-table
+  [dataSource]="borrows"
+  matSort
+  (matSortChange)="sortData($event)"
+>
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+    <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+  </ng-container>
+  <ng-container matColumnDef="authors">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Authors</th>
+    <td mat-cell *matCellDef="let element">{{ element.authors }}</td>
+  </ng-container>
+  <ng-container matColumnDef="borrowedOn">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Borrowed on</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.borrowedOn | date: 'dd/MM/yyyy' }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="returnedOn">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Returned on</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element?.returnedOn | date: 'dd/MM/yyyy' }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef>Details</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        mat-raised-button
+        color="primary"
+        routerLink="/book-page/{{ element.bookId }}"
+      >
+        Details
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

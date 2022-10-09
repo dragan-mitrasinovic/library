@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>
+      ADMIN LOGIN
+    </mat-card-title>
+    <form [formGroup]="adminLoginForm" (submit)="onAdminLogin()">
+      <mat-form-field appearance="outline">
+        <input matInput type="text" formControlName="username" placeholder="Username">
+        <mat-error *ngIf="!adminLoginForm.controls['username'].valid">
+          Enter your username
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput type="password" formControlName="password" placeholder="Password">
+        <mat-error *ngIf="!adminLoginForm.controls['password'].valid">
+          Enter your password
+        </mat-error>
+      </mat-form-field>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Login</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>
+

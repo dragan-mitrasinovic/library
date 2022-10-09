@@ -1,0 +1,119 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title> REGISTER </mat-card-title>
+    <form [formGroup]="registrationForm" (submit)="onRegister()">
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="text"
+          formControlName="username"
+          placeholder="Username"
+        />
+        <mat-error *ngIf="!registrationForm.controls['username'].valid">
+          Enter your username
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+        />
+        <mat-error *ngIf="!registrationForm.controls['password'].valid">
+          Enter a valid password
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="Confirm Password"
+        />
+        <mat-error *ngIf="!registrationForm.controls['confirmPassword'].valid">
+          Passwords don't match
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="text"
+          formControlName="firstName"
+          placeholder="First Name"
+        />
+        <mat-error *ngIf="!registrationForm.controls['firstName'].valid">
+          Enter your first name
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="text"
+          formControlName="lastName"
+          placeholder="Last Name"
+        />
+        <mat-error *ngIf="!registrationForm.controls['lastName'].valid">
+          Enter your last name
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="text"
+          formControlName="address"
+          placeholder="Address"
+        />
+        <mat-error *ngIf="!registrationForm.controls['address'].valid">
+          Enter your address
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="text"
+          formControlName="phoneNumber"
+          placeholder="Phone Number"
+        />
+        <mat-error *ngIf="!registrationForm.controls['phoneNumber'].valid">
+          Enter your phone number
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+        />
+        <mat-error *ngIf="!registrationForm.controls['email'].valid">
+          Enter a valid email
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <button mat-stroked-button type="button" (click)="filePicker.click()">
+          Pick Image
+        </button>
+        <input type="file" #filePicker (change)="onImagePicked($event)" />
+      </div>
+      <div
+        class="image-preview"
+        *ngIf="
+          imagePreview !== '' &&
+          imagePreview &&
+          registrationForm.controls['image'].valid
+        "
+      >
+        <img [src]="imagePreview" alt="registrationForm.value.username" />
+      </div>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">
+          Register
+        </button>
+      </mat-card-actions>
+      <mat-card-footer>
+        <h3>Already have an account? <a routerLink="/">Login here</a></h3>
+      </mat-card-footer>
+    </form>
+  </mat-card-content>
+</mat-card>

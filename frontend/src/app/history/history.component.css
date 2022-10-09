@@ -1,0 +1,9 @@
+table {
+  width: 80%;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}

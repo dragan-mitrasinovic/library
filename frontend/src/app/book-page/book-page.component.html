@@ -1,0 +1,123 @@
+<mat-card class="main-card">
+  <mat-card-content>
+    <mat-card-title> BOOK INFO </mat-card-title>
+    <div class="image-preview">
+      <img src="{{ currentBook?.coverPicture }}" />
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput [readonly]="true" value="{{ currentBook?.title }}" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Publisher</mat-label>
+        <input
+          matInput
+          [readonly]="true"
+          value="{{ currentBook?.publisher }}"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Rating</mat-label>
+        <input
+          matInput
+          [readonly]="true"
+          value="{{ currentBook?.rating }} / 10"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field
+        appearance="outline"
+        class=""
+        *ngFor="let author of currentBook?.authors"
+      >
+        <mat-label>Author</mat-label>
+        <input matInput [readonly]="true" value="{{ author }}" />
+      </mat-form-field>
+    </div>
+    <mat-form-field
+      appearance="outline"
+      *ngFor="let genre of currentBook?.genres"
+    >
+      <mat-label>Genre 1</mat-label>
+      <input matInput [readonly]="true" value="{{ genre }}" />
+    </mat-form-field>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Year of publishing</mat-label>
+        <input
+          matInput
+          [readonly]="true"
+          value="{{ currentBook?.releaseDate }}"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Language</mat-label>
+        <input matInput [readonly]="true" value="{{ currentBook?.language }}" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Number of available copies</mat-label>
+        <input
+          matInput
+          [readonly]="true"
+          value="{{ currentBook?.numberOfCopies }}"
+        />
+      </mat-form-field>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onBorrow()"
+      *ngIf="currentBook?.numberOfCopies > 0 && !guest"
+    >
+      Borrow
+    </button>
+    <mat-card class="example-card" *ngIf="currentBook?.comments.length == 0">
+      <h1>No reviews</h1>
+    </mat-card>
+    <mat-card class="comment-card" *ngFor="let comment of comments">
+      <mat-card-content>
+        <mat-card-subtitle>{{
+          comment.date | date: 'dd/MM/yyyy'
+        }}</mat-card-subtitle>
+        <mat-card-title>{{ comment.username }}</mat-card-title>
+        <mat-card-subtitle>{{ comment.rating }} / 10</mat-card-subtitle>
+      </mat-card-content>
+      <mat-form-field appearance="outline" class="comment-text">
+        <mat-label>Comment</mat-label>
+        <textarea
+          matInput
+          [readonly]="true"
+          value="{{ comment?.text }}"
+        ></textarea>
+      </mat-form-field>
+    </mat-card>
+    <mat-card class="mycomment-card" *ngIf="!guest">
+      <mat-form-field>
+        <mat-label>Rating</mat-label>
+        <mat-select
+          [(ngModel)]="myCommentRating"
+          name="myCommentRating"
+          ngDefaultControl
+        >
+          <mat-option *ngFor="let num of ratings" [value]="num">
+            {{ num }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="mycomment-text">
+        <mat-label>Comment</mat-label>
+        <textarea
+          matInput
+          [(ngModel)]="myCommentText"
+          name="myCommentText"
+          ngDefaultControl
+        ></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="accent" (click)="onComment()">
+        Comment
+      </button>
+    </mat-card>
+  </mat-card-content>
+</mat-card>

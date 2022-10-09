@@ -1,0 +1,74 @@
+<div class="container">
+  <mat-toolbar
+    color="primary"
+    *ngIf="
+      router.url != '/' &&
+      router.url != '/register' &&
+      router.url != '/admin-login'
+    "
+  >
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>
+      <a>Library</a>
+    </span>
+    <span class="spacer"></span>
+    <button
+      mat-icon-button
+      routerLink="/change-password"
+      *ngIf="
+        userType === 'admin' || userType === 'moderator' || userType === 'user'
+      "
+    >
+      <mat-icon>password</mat-icon>
+    </button>
+    <div
+      class="user-icon"
+      *ngIf="
+        userType === 'admin' || userType === 'moderator' || userType === 'user'
+      "
+    >
+      <a routerLink="/profile">
+        <img src="{{ picture }}" />
+      </a>
+    </div>
+    <button mat-icon-button (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav #snav fixedTopGap="56" mode="side">
+      <mat-nav-list>
+        <mat-list-item routerLink="/home-page"> Homepage </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="/search"> Search </mat-list-item>
+        <mat-divider></mat-divider>
+        <div
+          *ngIf="
+            userType === 'admin' ||
+            userType === 'moderator' ||
+            userType === 'user'
+          "
+        >
+          <mat-list-item routerLink="/profile"> Profile </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item routerLink="/borrowed-books">
+            Borrowed books
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item routerLink="/history"> History </mat-list-item>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="/admin-panel" *ngIf="userType === 'admin'">
+          Admin Panel
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <ng-content select="[main]"></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
